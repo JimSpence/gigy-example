@@ -14,14 +14,17 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "parties")
 public class Party {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "party_id")
 	private long id;
 
@@ -32,9 +35,11 @@ public class Party {
 	private Date date;
 
 	@ManyToMany
-	@JoinTable(name = "people_parties", 
+	@JsonBackReference
+	@JoinTable(name = "people_parties",
 		joinColumns = @JoinColumn(name = "party_id", referencedColumnName = "party_id"), 
 		inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"))
+//	@Fetch(FetchMode.JOIN)
 	private Set<Person> people = new HashSet<Person>();
 
 	public long getId() {

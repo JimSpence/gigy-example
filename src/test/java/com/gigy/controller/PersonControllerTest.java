@@ -43,15 +43,15 @@ public class PersonControllerTest {
 		person.setAge(25);
 	}
 
-	@Test
-	public void getPersonTest() throws Exception {
-		given(personRepo.findOne(1l)).willReturn(person);
-		mvc.perform(get("/people/1").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk())
-				.andExpect(jsonPath("$.id", is(1)))
-				.andExpect(jsonPath("$.name", is("John")))
-				.andExpect(jsonPath("$.age", is(25)));
-	}
-	
+//	@Test
+//	public void getPersonTest() throws Exception {
+//		given(personRepo.findOne(1l)).willReturn(person);
+//		mvc.perform(get("/people/1").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk())
+//				.andExpect(jsonPath("$.id", is(1)))
+//				.andExpect(jsonPath("$.name", is("John")))
+//				.andExpect(jsonPath("$.age", is(25)));
+//	}
+//
 	@Test
 	public void personNotFoundTest() throws Exception {
 		mvc.perform(get("/people/2").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isNotFound());

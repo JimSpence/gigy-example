@@ -1,6 +1,7 @@
 package com.gigy.controller;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,11 +28,11 @@ public class PartyController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Party> getParty(@PathVariable long id) {
-		Party party = partyRepo.findOne(id);
+	public ResponseEntity getParty(@PathVariable long id) {
+		Optional<Party> party = partyRepo.findById(id);
 
 		if (party != null) {
-			return new ResponseEntity<>(partyRepo.findOne(id), HttpStatus.OK);
+			return new ResponseEntity<>(partyRepo.findById(id), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
@@ -44,7 +45,7 @@ public class PartyController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deletePartyn(@PathVariable long id) {
-		partyRepo.delete(id);
+		partyRepo.deleteById(id);
 
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}

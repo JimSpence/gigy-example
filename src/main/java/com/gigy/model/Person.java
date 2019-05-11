@@ -16,13 +16,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "people")
 public class Person {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "person_id")
 	private long id;
 
@@ -33,13 +35,15 @@ public class Person {
 	private int age;
 
 	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+	@Fetch(FetchMode.JOIN)
 	private Set<Skill> skills = new HashSet<Skill>();
 
 	@ManyToMany(cascade = CascadeType.MERGE)
-	@JsonBackReference
+//	@JsonBackReference
 	@JoinTable(name = "people_parties",
 		joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"),
 		inverseJoinColumns = @JoinColumn(name = "party_id", referencedColumnName = "party_id"))
+	@Fetch(FetchMode.JOIN)
 	private Set<Party> parties = new HashSet<Party>();
 
 	public long getId() {
