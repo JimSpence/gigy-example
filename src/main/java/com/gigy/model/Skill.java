@@ -1,15 +1,6 @@
 package com.gigy.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -31,6 +22,9 @@ public class Skill {
 	@JoinColumn (name="person_id")
 	@JsonBackReference
 	private Person person;
+
+//	@Column(name = "person_id")
+//	private long personid;
 
 	public long getId() {
 		return id;
@@ -63,4 +57,14 @@ public class Skill {
 	public void setPerson(Person person) {
 		this.person = person;
 	}
+
+//	public long getPersonid() {
+//		return personid;
+//	}
+//
+//	public void setPersonid(long personid) {
+//		this.personid = personid;
+//	}
 }
+
+

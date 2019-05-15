@@ -34,13 +34,12 @@ public class Party {
 	@JsonFormat(pattern = "YYYY-MM-dd")
 	private Date date;
 
-	@ManyToMany
-	@JsonBackReference
-	@JoinTable(name = "people_parties",
-		joinColumns = @JoinColumn(name = "party_id", referencedColumnName = "party_id"), 
-		inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"))
-//	@Fetch(FetchMode.JOIN)
-	private Set<Person> people = new HashSet<Person>();
+//	@ManyToMany
+//	@JsonBackReference
+//	@JoinTable(name = "people_parties",
+//		joinColumns = @JoinColumn(name = "party_id", referencedColumnName = "party_id"),
+//		inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"))
+//	private Set<Person> people = new HashSet<Person>();
 
 	public long getId() {
 		return id;
@@ -66,12 +65,12 @@ public class Party {
 		this.date = date;
 	}
 
-	public Set<Person> getPeople() {
-		return people;
-	}
+//	public Set<Person> getPeople() {
+//		return people;
+//	}
 
-	public void setPeople(Set<Person> people) {
-		this.people = people;
-	}
+//	public void setPeople(Set<Person> people) {
+//		this.people = people;
+//	}
 
 }

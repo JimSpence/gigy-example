@@ -15,10 +15,10 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 	
 	Person findByUsername(String username);
 
-    @Query(
-            value = "SELECT p FROM Person p " +
-                    "INNER JOIN FETCH p.skills s " +
-                    "INNER JOIN FETCH p.parties part")
-    Collection<Person> findAllPersonsNative();
+//    @Query(
+//            value = "SELECT DISTINCT p FROM Person p " +
+//                    "INNER JOIN FETCH p.skills s " +
+//                    "INNER JOIN FETCH p.parties part")
+//    Collection<Person> findAllPersonsNative();
 
 }

@@ -1,21 +1,14 @@
 package com.gigy.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -34,17 +27,17 @@ public class Person {
 
 	private int age;
 
-	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
 	@Fetch(FetchMode.JOIN)
-	private Set<Skill> skills = new HashSet<Skill>();
+    @JsonManagedReference
+	private List<Skill> skills = new ArrayList<Skill>();
 
-	@ManyToMany(cascade = CascadeType.MERGE)
-//	@JsonBackReference
-	@JoinTable(name = "people_parties",
-		joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"),
-		inverseJoinColumns = @JoinColumn(name = "party_id", referencedColumnName = "party_id"))
-	@Fetch(FetchMode.JOIN)
-	private Set<Party> parties = new HashSet<Party>();
+//	@ManyToMany(cascade = CascadeType.MERGE)
+//	@JoinTable(name = "people_parties",
+//		joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"),
+//		inverseJoinColumns = @JoinColumn(name = "party_id", referencedColumnName = "party_id"))
+//	@Fetch(FetchMode.JOIN)
+//	private Set<Party> parties = new HashSet<Party>();
 
 	public long getId() {
 		return id;
@@ -78,20 +71,20 @@ public class Person {
 		this.age = age;
 	}
 
-	public Set<Skill> getSkills() {
+	public List<Skill> getSkills() {
 		return skills;
 	}
 
-	public void setSkills(Set<Skill> skills) {
+	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
 	}
 
-	public Set<Party> getParties() {
-		return parties;
-	}
-
-	public void setParties(Set<Party> parties) {
-		this.parties = parties;
-	}
+//	public Set<Party> getParties() {
+//		return parties;
+//	}
+//
+//	public void setParties(Set<Party> parties) {
+//		this.parties = parties;
+//	}
 
 }

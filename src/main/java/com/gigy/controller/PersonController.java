@@ -28,10 +28,10 @@ public class PersonController {
 		return new ResponseEntity<>(personRepo.findAll(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/native", method = RequestMethod.GET)
-	public ResponseEntity<Collection<Person>> getPeopleNative() {
-		return new ResponseEntity<>(personRepo.findAllPersonsNative(), HttpStatus.OK);
-	}
+//	@RequestMapping(value = "/native", method = RequestMethod.GET)
+//	public ResponseEntity<Collection<Person>> getPeopleNative() {
+//		return new ResponseEntity<>(personRepo.findAllPersonsNative(), HttpStatus.OK);
+//	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity getPerson(@PathVariable long id) {
@@ -46,6 +46,11 @@ public class PersonController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> addPerson(@RequestBody Person person) {
+		return new ResponseEntity<>(personRepo.save(person), HttpStatus.CREATED);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT)
+	public ResponseEntity<?> updatePerson(@RequestBody Person person) {
 		return new ResponseEntity<>(personRepo.save(person), HttpStatus.CREATED);
 	}
 

@@ -1,13 +1,15 @@
 INSERT INTO users (user_id, username, password, enabled) VALUES 
 	('1', 'peter@example.com', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true),
 	('2', 'john@example.com', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true),
-	('3', 'katie@example.com', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true);
+	('3', 'katie@example.com', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true),
+	('4', 'jim@example.com', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true);
 
 INSERT INTO people (person_id, name, age, username) VALUES 
 	(1, 'Peter', 25, 'peter@example.com'),
 	(2, 'John', 30, 'john@example.com'),
-	(3, 'Katie', 18, 'katie@example.com');
-	
+	(3, 'Katie', 18, 'katie@example.com'),
+	(4, 'Jim', 18, 'jim@example.com');
+
 INSERT INTO skills (skill_id, person_id, name, level) VALUES
 	(1, 1, 'Juggling', 'GOOD'),
 	(2, 1, 'Dancing', 'AWESOME'),

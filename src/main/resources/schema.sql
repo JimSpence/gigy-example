@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS people;
 CREATE TABLE people (
     person_id BIGINT PRIMARY KEY auto_increment,
     name VARCHAR(32),
-    username VARCHAR(128) UNIQUE REFERENCES users (username),
+    username VARCHAR(128),
     age INT
 );
 
